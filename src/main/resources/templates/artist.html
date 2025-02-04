@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SVP - Artista</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+	
+
+</head>
+
+	<body>
+		<aside th:replace="~{fragments/sidebar}"></aside>
+		
+		
+		
+		<div class="main-container">
+    
+			<div th:if="${artist}">
+				<h1 class="main-title" th:text="${artist.name} + ' ' + ${artist.surname}"></h1>	     
+				<p><img class="portrait"  th:src="${artist.urlOfPicture != '' ? artist.urlOfPicture : '/images/default_person.jpg'}"/></p>
+			
+					<div class="action_buttons" th:if="${userRole} == 'ADMIN'">	
+						
+						<div class="input-group">
+						    <form th:action="@{'/admin/upload/artist/'+${artist.id}}" 
+						          method="POST" enctype="multipart/form-data">
+						        <label for="file">Aggiorna immagine:</label>
+								<div style="width: 50%; display: flex; align-items: center;">
+						        <input type="file" name="file" id="file" accept="image/*" required/>
+								<button style="margin: 20px" type="submit">Carica</button>
+								</div>
+						    </form>
+						</div>	
+						<a th:href="@{'/admin/deleteArtist/' + ${artist.id}}"><i class="fas fa-trash"></i></a>
+						<a th:href="@{'/admin/manageArtist/' + ${artist.id}}"><i class="fas fa-edit"></i></a>
+						
+						
+					</div>
+				
+								
+								
+				
+		       	<i class="fas fa-birthday-cake" th:if="${artist.dateOfBirth}" th:text="' ' + ${artist.dateOfBirth}"></i><br>
+			    <i class="fas fa-home"th:if="${artist.placeOfBirth}" th:text="' ' + ${artist.placeOfBirth}"></i><br>
+			    <i class="fas fa-cross" th:if="${artist.dateOfDeath}" th:text="' ' + ${artist.dateOfDeath}"></span></i>
+				<br>
+				<br>
+		
+						
+				<!-- Tabella opere -->
+				<div th:if="${!artist.madeArtworks.isEmpty}">
+				<i class="fas fa-paint-brush" th:text="'Opere:'"></i>
+				<br>
+				<br>
+					<table class='table'>
+					<tr>
+					<th>Titolo</th>
+					<th>Anno</th>
+					<th>Tecnica</th>
+					<th th:if= "${userRole} == 'ADMIN'" >Azioni</th>
+					</tr>
+					
+					<tr th:each="artwork : ${artist.madeArtworks}">
+					<td class="name"><a th:href="@{'/artwork/' + ${artwork.id}}" th:text="${artwork.title}"></a></td>
+					<td th:text="${artwork.year}"></td>
+					<td th:text="${artwork.technique}"></td>
+					
+					<td th:if= "${userRole} == 'ADMIN'" class="table_actions">
+						<a  th:href="'/admin/artist/' + ${artist.id} + '/removeArtwork/' + ${artwork.id}"><i class="fas fa-trash-alt"></i></a>
+						<a th:href="'/admin/manageArtwork/' + ${artwork.id}"><i class="fas fa-edit"></i></a>
+					</td>
+					</table>
+			    </div>
+				
+			<br>
+			<div th:if="${userRole} == 'ADMIN'">
+			<form th:action="@{'/admin/artist/' + ${artist.id} + '/addArtwork'}" method="POST">
+										      
+					<select id="artworkId" name="artworkId" required>
+		            	<option value="" disabled selected>Aggiungi opera</option>
+		            	<option th:each="artwork : ${artworks}" 
+		                    	th:value="${artwork.id}" 
+		                    	th:text="${artwork.title} + ' (' + ${artwork.year} + ')'">
+						</option>
+						
+					</select>
+					<button type="submit" th:text="'Conferma'"></button>
+					
+			</form>
+			</div>		
+			</div>	
+							
+    		<div th:unless="${artist}">Non esiste</div>
+	</div>
+  </body>
+</html>

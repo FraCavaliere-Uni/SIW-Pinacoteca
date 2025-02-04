@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SVP - Cerca Opera</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+	<aside th:replace="~{fragments/sidebar}"></aside>
+			
+	<div class="main-container">
+
+	
+	<h1>Cerca opera per: </h1>
+	
+	<div class="input-group">
+		<form class="form" th:action="@{/searchArtworks}" method="post">
+			<label>Anno:</label> <input type="text" th:value="${year}" name="year" /> <input class="fake-button" type="submit" value="Avvia ricerca" style="max-width:30%"/>
+		</form> 
+		
+		<form class="form" th:action="@{/searchArtworks}" method="post">
+			<label>Tecnica:</label> <input type="text" th:value="${technique}" name="technique" /> <input class="fake-button" type="submit" value="Avvia ricerca" style="max-width:30%" />
+		</form>
+			
+		<form class="form" th:action="@{/searchArtworks}" method="post">
+		        <label for="artistId">Artista:</label>
+		        <select id="artistId" name="artistId" style="width: 100%">
+		            <option style="max-width: 100%"value="" disabled selected>Seleziona</option>
+		            <option th:each="artist : ${artists}" 
+		                    th:value="${artist.id}" 
+		                    th:text="${artist.name + ' ' + artist.surname}"></option>
+		        </select>
+		        <input class="fake-button" type="submit" value="Avvia ricerca" style="max-width:30%"/>
+				</form>
+		    </div>
+	</div>
+	
+</body>
+
+</html>

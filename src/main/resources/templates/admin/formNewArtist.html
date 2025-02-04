@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title th:text="'SVPa - ' + ${action == 'create' ? 'Crea' : 'Aggiorna'} + ' Artista'">
+	</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+	<aside th:replace="~{fragments/sidebar}"></aside>
+		<div class="main-container">
+		
+			<h1 th:text="${action == 'create' ? 'Crea' : 'Aggiorna'} + ' Artista'"></h1>
+	
+			
+				<form class="form" th:action="@{${action == 'create' ? '/admin/submitArtist' : '/admin/submitArtist' + (artist.id != null ? '/'+artist.id : '')}}"
+				      method="POST" th:object="${artist}">
+					<div class="input-group">
+				    <label>Nome:</label>
+				    <input type="text" id="name" th:field="*{name}" required><br><br>
+	
+					<label>Cognome:</label>
+				    <input type="text" id="surname" th:field="*{surname}" required><br><br>
+									
+				    <label>Anno di nascita:</label>
+				    <input type="date" id="dateOfBirth" th:field="*{dateOfBirth}"required> <br><br>
+					
+					<label>Luogo di nascita:</label>
+					<input type="text" id="surname" th:field="*{placeOfBirth}" required><br><br>
+					
+					<label>Anno di morte:</label>
+					<input type="date" id="dateOfDeath" th:field="*{dateOfDeath}" th:value="*{dateOfDeath}"><br><br>
+	
+					
+				    <input type="hidden" id="urlOfPicture" th:field="*{urlOfPicture}">
+							
+	
+					</div>
+	
+	
+				    <button type="submit">
+				        <span th:text="${action == 'create' ? 'Crea' : 'Aggiorna'} + ' Artista'"></span>
+				    </button>
+					<br>
+					<br>
+					<span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+					<span class="error" th:if="${#fields.hasErrors('dateOfDeath')}" th:errors="*{dateOfDeath}"></span>
+	
+				</form>
+			 
+	
+			
+			</div>	   
+		</body>
+
+	
+
+</html>

@@ -1,0 +1,255 @@
+body {
+   font-family: system-ui ;
+   height: 100%;
+   margin: 0;  
+   background-color: #f4f4f4;
+ }    
+
+ .main-container {
+   margin: auto;  
+   display: block;
+   padding: 2rem;
+   margin-left: calc(190px);
+   max-width: 100%; 
+ }
+ 
+ .main-title {
+ 	padding: 12px;
+     letter-spacing: 2px;
+     font-size: 2rem;
+     color: #333; 
+     text-align: center;
+     margin: 0;
+  }
+  
+
+  .portrait {
+  text-align: center;
+  display: block;
+  margin: auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width:20rem;
+  }
+
+  /* Utils */
+  
+ 
+ 
+ .action_buttons, a {
+	text-decoration: none;
+	color: #212529; 
+ }
+ .action_buttons .fa-trash{
+	color: red;
+ }
+ 
+ button, .fake-button {
+     background-color: #3cc691; 
+     color: white;  
+     border: none; 
+     padding: 10px 20px; 
+     text-align: center; 
+     text-decoration: none;  
+     display: inline-block;  
+     font-size: 16px;  
+     cursor: pointer;  
+     border-radius: 5px;  
+     transition: background-color 0.3s ease; 
+  }
+  button:hover, .fake-button:hover {
+      background-color: #2bb580;
+     
+  }
+
+  button:active, .fake-button:active {
+      transform: scale(0.95); 
+      box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+
+ /* Table */
+ 
+ .table {
+     border-radius: 10px;
+     width: 100%;
+	 
+     overflow: hidden; 
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+     margin: 20px; 
+ }
+
+ .table th {
+     background-color: #3cc691; 
+     color: white;
+     text-align: center;
+     padding: 5px;
+     font-size: 16px;
+     border-bottom: 2px solid #333; 
+     border-radius: 10px 10px 0 0; 
+ }
+
+ .table td {
+     text-align: center;
+     vertical-align: middle;
+     padding: 12px;
+     font-size: 14px; 
+     border-bottom: 1px solid #abc; 
+ }
+
+ .table tr:nth-child(even) {
+     background-color: #ddd;
+ }
+
+ .table tr:hover {
+     background-color: #888;
+ }
+
+ .table a {
+     text-decoration: none;
+     color: #333333; 
+     font-weight: bold;
+ }
+
+ .table a:hover {
+     color: #fff; 
+     text-decoration: underline; 
+ }
+
+ /* Select */
+ 
+ select {
+     appearance: none;  
+     background-color: #f0f0f0;  
+     color: #333; 
+     font-size: 16px; 
+     padding: 10px 15px;  
+     border: 2px  #ccc;  
+     border-radius: 5px;  
+     width: 30%;  
+     cursor: pointer;  
+     transition: all 0.3s ease;  
+ }
+
+ select:hover {
+     background-color: #e2e2e2;  
+ }
+
+ select:focus {
+     outline: none;  
+     border-color: #007bff;  
+     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+ }
+  
+ /* Form */
+ 
+ .form {
+     max-width: 50%;
+     margin: left;
+     padding: 20px;
+     background-color: #f9f9f9;
+     border-radius: 8px;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+ }
+
+ .input-group {
+     margin-bottom: 15px;
+	 max-width: 50%;
+ }
+
+ .input-group label {
+     display: block;
+     font-size: 14px;
+     margin-bottom: 5px;
+     font-weight: bold;
+ }
+
+ .input-group input {
+     width: 100%;
+     padding: 10px;
+     font-size: 16px;
+     border: 1px solid #ccc;
+     border-radius: 4px;
+     box-sizing: border-box;
+ }
+ 
+ /* List */
+ 
+ .list {
+   list-style-type: none;
+   padding: 0;
+   margin: 0;
+   font-family: system-ui;
+   font-size: 16px;
+ }
+
+ .list li {
+   padding: 8px 16px;
+   background-color: #f4f4f4; 
+   border: 1px solid #ddd; 
+   margin-bottom: 8px; 
+   border-radius: 4px; 
+   transition: background-color 0.2s, transform 0.2s;
+ }
+
+
+ .list li:hover {
+   background-color: #e0e0e0; 
+   transform: translateX(4px); 
+ }
+
+
+ .list li:active {
+   background-color: #ccc; 
+   transform: translateY(2px); 
+ }
+
+
+ 
+ /* Sidebar */
+ 
+ .side-container {
+    height: 100%;
+    width: 190px;
+    position: fixed;
+    background-color: #212529;
+    overflow-x: hidden;
+    padding-top: 10px;  
+    border-radius: 8px
+    
+  }
+  
+ .logo-container{
+	text-align: center;
+ }
+ .vertical-menu {
+   width: 100%; 
+ }
+ 
+ .vertical-menu .small-logo{
+	width: 40%
+	
+ }
+ .vertical-menu .fa-sign-out-alt{
+	color: red;
+	position: absolute;
+	text-decoration: none; 
+	right: 10px;
+	top: 100px;
+
+	
+ }
+ .vertical-menu a.sidebar_items {
+   color: white;
+   display: block;
+   padding: 10px;
+   text-decoration: none; 
+ }
+ .vertical-menu a.sidebar_items:hover {      
+   color: black;
+   background-color: #ccc;
+ }
+ 
+
+ 
+ 

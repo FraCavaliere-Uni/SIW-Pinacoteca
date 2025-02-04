@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title th:text="'SVPa - ' + ${action == 'create' ? 'Crea' : 'Aggiorna'} + ' Curatore'">
+	</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+	<aside th:replace="~{fragments/sidebar}"></aside>
+		
+		<div class="main-container">
+			<h1 th:text="${action == 'create' ? 'Crea' : 'Aggiorna'} + ' Curatore'"></h1>
+			
+			
+						<form class="form" th:action="@{${action == 'create' ? '/admin/submitCurator' : '/admin/submitCurator' + (curator.id != null ? '/'+curator.id : '')}}" 
+					      method="POST" th:object="${curator}">
+						  <div class="input-group">
+					    <label>Nome:</label>
+					    	<input type="text" id="name" th:field="*{name}" required><br><br>
+		
+						<label>Cognome:</label>
+					   		<input type="text" id="surname" th:field="*{surname}" required><br><br>
+						
+						
+					    <label>Anno di nascita:</label>
+					    	<input type="date" id="dateOfBirth" th:field="*{dateOfBirth}"required> <br><br>
+						
+						<label>Luogo di nascita:</label>
+							<input type="text" id="placeOfBirth" th:field="*{placeOfBirth}" required><br><br>
+		
+		
+						<label>Codice Fiscale:</label>
+							<input type="text" id="cf" th:field="*{cf}" required><br><br>
+		
+						<input type="hidden" id="urlOfPicture" th:field="*{urlOfPicture}">
+								
+					    <button type="submit">
+					        <span th:text="${action == 'create' ? 'Crea' : 'Aggiorna'} + ' Curatore'"></span>
+					    </button>
+						
+						<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+						</div>
+					</form>
+				 
+			</div>
+   
+</body>
+		
+</html>
+	

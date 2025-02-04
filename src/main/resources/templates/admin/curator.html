@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SVPa - Curatore </title>
+	<link rel="stylesheet" href="/css/stile.css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+	
+	
+	<aside th:replace="~{fragments/sidebar}"></aside>
+	<div class="main-container">    
+		<div th:if="${curator}">
+			<h1 class="main-title" th:text="${curator.name} + ' ' + ${curator.surname}"></h1>	
+
+		
+			
+			<p><img class="portrait" th:src="${curator.urlOfPicture != '' ? curator.urlOfPicture : '/images/default_person.jpg'}"/></p>
+			
+			<div class="input-group">	
+			<form th:action="@{'/admin/upload/curator/'+${curator.id}}" 
+		          method="POST" enctype="multipart/form-data">
+		        <label for="file">Aggiorna immagine:</label>
+				<div style="width: 50%; display: flex; align-items: center;">
+		        <input type="file" name="file" id="file" accept="image/*" required/>
+				<button style="margin: 20px" type="submit">Carica</button>
+				</div>
+		    </form>
+			</div>
+			
+			
+			<div class="action_buttons">
+							<a th:href="@{'/admin/deleteCurator/' + ${curator.id}}"><i class="fas fa-trash"></i></a>
+							<a th:href="@{'/admin/manageCurator/' + ${curator.id}}"><i class="fas fa-edit"></i></a>
+			</div>
+				
+       	<i class="fas fa-birthday-cake" th:if="${curator.dateOfBirth}" th:text="' ' + ${curator.dateOfBirth}"></i><br>
+	    <i class="fas fa-home" th:if="${curator.placeOfBirth}" th:text="' ' + ${curator.placeOfBirth}"></i><br>
+	    <i class="fas fa-file" th:if="${curator.cf}" th:text="' ' + ${curator.cf}"></i><br><br>
+	    
+		
+		
+		<div th:if="${!curator.getManagedSale().isEmpty}">
+		
+		<table class="table">
+			<tr>
+				<th> Sala </th>
+				<th> Azioni </th>
+				</tr>
+
+				<tr th:each="sala : ${curator.managedSale}">
+					<td th:text="${sala.name}"></td>
+					
+					<td class="table_actions">
+						<a th:href="'/admin/curator/' + ${curator.id} + '/removeSala/' + ${sala.id}"><i class="fas fa-trash-alt"></i></a></td>
+				</tr>
+		
+		
+			</table>
+			
+			<br>
+			</div>
+			<form th:action="@{'/admin/curator/' + ${curator.id} + '/addSala'}" method="POST">
+						      
+						<select id="salaId" name="salaId" required>
+			            	<option value="" disabled selected>Seleziona Sala da aggiungere</option>
+			            	<option th:each="sala : ${sale}" 
+			                    	th:value="${sala.id}" 
+			                    	th:text="${sala.name}">
+							</option>
+							
+						</select>
+						<button type="submit" th:text="'Aggiungi Sala'"></button>
+						
+			</form>
+	
+	
+		
+    </div>
+	
+   
+	
+	</div>
+  </body>
+</html>

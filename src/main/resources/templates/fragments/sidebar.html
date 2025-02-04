@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <th:block th:fragment="aside">
+    <aside class="side-container">  
+      <div class="vertical-menu ">                   
+        <div  class="logo-container" ><a href="/"><img class='small-logo' src="/images/logo.png"></a></div>
+        
+		<hr>
+		
+		<a class='sidebar_items' th:if="${userDetails}"><i class="fas fa-user"></i>
+			<span th:text="'&nbsp; ' + ${userDetails.username}"></span>
+			<a href="/logout"><i class="fas fa-sign-out-alt"></i></a>
+			
+		</a>
+		
+							
+				<div th:unless="${userDetails}"><a href="/login">Login</a></div>
+				
+				
+				
+        <a class = "sidebar_items" href="/artwork"><i class="fas fa-paint-brush"></i><span>&nbsp; Opere</span></a>
+        <a  class = "sidebar_items" href="/artist"><i class=" fas fa-users"></i><span>&nbsp; Artisti</span></a>    
+		
+		<div th:if="${userRole} == 'ADMIN'">
+		<hr>
+				<a class = "sidebar_items" th:href="@{/admin/indexArtwork}"><i class="fas fa-toolbox"></i><span>&nbsp; Gestisci Opere</span></a>
+				<a class = "sidebar_items" th:href="@{/admin/indexArtist}"><i class=" fas fa-users-cog"></i><span>&nbsp; Gestisci Artisti</span></a> 
+				<a class = "sidebar_items" th:href="@{/admin/indexCurator}"><i class=" fas fa-user-tie"></i><span>&nbsp; Gestisci Curatori</span></a>   
+			</div>	   
+      </div>       
+    </aside>
+  </th:block>
+</html>

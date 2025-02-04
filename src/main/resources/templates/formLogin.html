@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		SVP - Login
+	</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+	<div class="main-container">
+	<div>
+		<a href="/"><img class="logo" src="/images/logo-siw.png" width="20%"/></a>
+	</div>
+	
+	<h1>Login</h1>
+	
+	<form th:action="@{/login}" method="POST" class="form">
+		<div class="input-group">
+		        <label for="username">Username:</label>
+		        <input id="username" name="username" type="text" required />
+		    
+		        <label for="password">Password:</label>
+		        <input id="password" name="password" type="password" required />
+		    
+				</div>
+		    <div class="error-message" th:if="${param.error != null}">
+		        Username o password errati
+		    </div>
+
+			
+				<button type="submit">Login</button>
+				<a th:href="@{/register}" class="fake-button" th:text="Registrati">Registrati</a>
+	</form>
+	
+	
+		
+	
+	</div>
+</body>
+
+</html>

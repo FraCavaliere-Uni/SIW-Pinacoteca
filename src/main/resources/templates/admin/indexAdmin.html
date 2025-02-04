@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		SVPa - Homepage
+	</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+		
+		
+	<aside th:replace="~{fragments/sidebar} "></aside>
+	
+
+	<div class="main-container">
+
+		
+		<h1 class="main-title">Consulta l'archivio</h1>
+		<ul class="list">	
+			<a href="/artwork"><li>Elenco Opere</li></a>
+			<a href="/artist"><li>Elenco Artisti</li></a>
+			<br><br>
+			<a href="/formSearchArtworks"><li>Cerca opere</li></a>
+		</ul> 
+	
+	
+		<div th:if="${userRole} == 'ADMIN'">
+			
+			<h1 class="main-title">Pannello admin</h1>
+			
+			<ul class="list">
+				
+				<a href="/admin/indexArtwork"><li>Operazioni sulle opere</li></a>
+				<a href="/admin/indexArtist"><li>Operazioni sugli artisti</li></a>
+				<a href="/admin/indexCurator"><li>Operazioni sui curatori</li></a>
+			</ul>
+		</div>
+
+ 	</div>
+	
+
+
+  </body>
+</html>
