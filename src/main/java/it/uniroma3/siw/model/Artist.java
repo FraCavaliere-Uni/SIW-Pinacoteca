@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,6 +19,7 @@ public class Artist extends Person{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfDeath;
 
 	@OneToMany(mappedBy="artist", cascade = CascadeType.ALL)
